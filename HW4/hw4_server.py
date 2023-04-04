@@ -32,8 +32,14 @@ while True:
         if not data:
             break
         msg = data.decode()
+        print('recv:',msg)
         if msg == 'q':
             break
-        print(calculator(msg))
+
+    try:
+        client.send(str(calculator(msg)).encode())
+        print('send:',calculator(msg))
+    except:
+        break
         
 sock.close()
